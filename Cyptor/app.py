@@ -5,6 +5,15 @@ from textual.screen import Screen
 # from .l18n import *
 
 
+class BaseButton(Button):
+    """按钮基类"""
+    CSS = """"""
+
+
+class BaseScreen(Screen):
+    """屏幕基类"""
+
+
 class HomeScreen(Screen):
     """应用首页面"""
 
