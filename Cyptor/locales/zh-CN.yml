@@ -1,0 +1,17 @@
+language: zh-CN
+language_name: 中文
+version: 0.1.0 Alpha
+
+global:
+  app:
+    title: "Cyptor by Cyan3771 版本 {0}"
+  quit: "退出"
+
+home:
+  welcome: "欢迎使用 Cyptor！"
+  buttons:
+    encrypt: "🔒 加密文件"
+    decrypt: "🔓 解密文件"
+    settings: "⚙️ 设置"
+    about: "ℹ️ 关于"
+

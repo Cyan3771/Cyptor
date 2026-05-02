@@ -1,4 +1,6 @@
 Cyptor.code-workspace
 .venv/
 .vscode/
-Cyptor/__pycache__
+Cyptor/core/__pycache__
+Cyptor/ui/__pycache__
+Cyptor/ui/screens/__pycache__
