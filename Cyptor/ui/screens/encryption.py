@@ -2,13 +2,11 @@ from textual.app import ComposeResult
 from textual.widgets import Button, Label
 from textual.containers import Center, Vertical
 from ui.screens.base import BaseScreen
-from textual.binding import Binding
 
 
 class EncryptionScreen(BaseScreen):
     """加密屏幕"""
-
-    BINDINGS = [("escape", "back", "")]
+    BINDINGS = [("escape", "back")]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
