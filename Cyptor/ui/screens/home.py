@@ -28,17 +28,33 @@ class HomeScreen(BaseScreen):
     }
     """
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        from app import CyptorApp
+        self.app: CyptorApp
+
+        app = self.app
+
+        self.i18n = app.i18n
+
     # 定义组件
+
     def compose(self) -> ComposeResult:
         # 调用父类的compose方法
         yield from super().compose()
 
         # 主屏幕组件
-        WelcomeLabel = Center(Label("欢迎使用Cyptor！", id="welcome-label"))
-        EncryptionBtn = Button("🔒 加密文件", id="encryption", classes="btn")
-        DecryptionBtn = Button("🔓 解密文件", id="decryption", classes="btn")
-        SettingsBtn = Button("⚙️ 设置", id="settings", classes="btn")
-        AboutBtn = Button("ℹ️ 关于", id="about", classes="btn")
+        WelcomeLabel = Center(
+            Label(self.i18n.home.welcome, id="welcome-label"))
+        EncryptionBtn = Button(
+            self.i18n.home.buttons.encrypt, id="encryption", classes="btn")
+        DecryptionBtn = Button(
+            self.i18n.home.buttons.decrypt, id="decryption", classes="btn")
+        SettingsBtn = Button(self.i18n.home.buttons.settings,
+                             id="settings", classes="btn")
+        AboutBtn = Button(self.i18n.home.buttons.about,
+                          id="about", classes="btn")
 
         ButtonsGroup = Center(
             EncryptionBtn, DecryptionBtn, SettingsBtn, AboutBtn)

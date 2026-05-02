@@ -1,0 +1,18 @@
+language: en-US
+language_name: English
+language_names:
+  zh-CN: 英语
+
+version: 0.1.0 Alpha
+
+app:
+  title: "Cyptor by Cyan3771 Version {0}"
+quit: "Quit"
+
+home:
+  welcome: "Welcome to Cyptor!"
+  buttons:
+    encrypt: "🔒 Encrypt File"
+    decrypt: "🔓 Decrypt File"
+    settings: "⚙️ Settings"
+    about: "ℹ️ About"

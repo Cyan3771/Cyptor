@@ -1,11 +1,14 @@
 language: zh-CN
-language_name: 中文
+language_name: 简体中文
+language_names:
+  en-US: Chinese (Simplified)
+
 version: 0.1.0 Alpha
 
-global:
-  app:
-    title: "Cyptor by Cyan3771 版本 {0}"
-  quit: "退出"
+
+app:
+  title: "Cyptor by Cyan3771 版本 {0}"
+quit: "退出"
 
 home:
   welcome: "欢迎使用 Cyptor！"

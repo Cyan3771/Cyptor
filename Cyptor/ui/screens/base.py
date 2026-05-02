@@ -22,8 +22,6 @@ class BaseScreen(Screen):
     }
     
     """
-    # 标题
-    TITLE = f"Cyptor by Cyan3771 version {VERSION}"
 
     # 定义组件
     def compose(self) -> ComposeResult:

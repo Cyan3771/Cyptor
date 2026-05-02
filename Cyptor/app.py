@@ -1,23 +1,23 @@
 from textual.app import App
 from ui.screens.home import HomeScreen
-from core.config import VERSION
-# from .l18n import *
+from core.config import VERSION, loadConfig
+from core.i18n import loadI18n
 
 
 class CyptorApp(App):
     """Cyptor应用"""
 
-    # 标题
-    TITLE = "Cyptor by Cyan3771 version {}".format(VERSION)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # 加载配置和国际化资源
+        self.config = loadConfig()
+        self.i18n = loadI18n(self.config.get("language", "zh-CN"))
 
-    # 定义快捷键
-    BINDINGS = [
-        ("q", "quit", "退出")
-    ]
+        self.title = self.i18n.app.title.format(VERSION)
+        self.bind("q", "quit", description=self.i18n.quit)
 
     def on_mount(self) -> None:
         """应用启动时的回调函数"""
-
         self.push_screen(HomeScreen())
 
 
