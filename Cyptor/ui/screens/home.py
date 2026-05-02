@@ -33,7 +33,6 @@ class HomeScreen(BaseScreen):
 
         from app import CyptorApp
         self.app: CyptorApp
-
         app = self.app
 
         self.i18n = app.i18n
@@ -64,3 +63,20 @@ class HomeScreen(BaseScreen):
             ButtonsGroup,
             id="home-container"
         )
+
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        """按钮点击事件"""
+        button_id = event.button.id
+        if button_id == "encryption":
+            from ui.screens.encryption import EncryptionScreen
+            self.app.push_screen(EncryptionScreen())
+        """elif button_id == "decryption":
+            from ui.screens.decryption import DecryptionScreen
+            self.app.push_screen(DecryptionScreen())
+        elif button_id == "settings":
+            from ui.screens.settings import SettingsScreen
+            self.app.push_screen(SettingsScreen())
+        elif button_id == "about":
+            from ui.screens.about import AboutScreen
+            self.app.push_screen(AboutScreen())
+"""

@@ -5,10 +5,11 @@ language_names:
 
 version: 0.1.0 Alpha
 
-
-app:
-  title: "Cyptor by Cyan3771 版本 {0}"
-quit: "退出"
+common:
+  app:
+    title: "Cyptor by Cyan3771 版本 {0}"
+  quit: "退出"
+  back: "返回"
 
 home:
   welcome: "欢迎使用 Cyptor！"
@@ -18,3 +19,5 @@ home:
     settings: "⚙️ 设置"
     about: "ℹ️ 关于"
 
+encryption:
+  title: "加密"

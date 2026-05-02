@@ -13,8 +13,8 @@ class CyptorApp(App):
         self.config = loadConfig()
         self.i18n = loadI18n(self.config.get("language", "zh-CN"))
 
-        self.title = self.i18n.app.title.format(VERSION)
-        self.bind("q", "quit", description=self.i18n.quit)
+        self.title = self.i18n.common.app.title.format(VERSION)
+        self.bind("q", "quit", description=self.i18n.common.quit)
 
     def on_mount(self) -> None:
         """应用启动时的回调函数"""
