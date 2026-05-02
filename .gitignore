@@ -1,3 +1,4 @@
 Cyptor.code-workspace
 .venv/
 .vscode/
+Cyptor/__pycache__
