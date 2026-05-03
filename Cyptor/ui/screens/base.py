@@ -20,7 +20,12 @@ class BaseScreen(Screen):
     Button {
         border-top: tall #00FFFF;
     }
-    
+    Input {
+        border: none;
+        height: 1;
+        padding: 0 0;
+    }
+
     """
 
     # 定义组件

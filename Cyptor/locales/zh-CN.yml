@@ -9,7 +9,10 @@ common:
   app:
     title: "Cyptor by Cyan3771 版本 {0}"
   quit: "退出"
-  back: "返回"
+  file:
+    select: "选择文件："
+    button:
+     tooltip: "点击选择文件"
 
 home:
   welcome: "欢迎使用 Cyptor！"
@@ -20,4 +23,7 @@ home:
     about: "ℹ️ 关于"
 
 encryption:
-  title: "加密"
+  title: "加密文件"
+
+errors:
+  aaa: a

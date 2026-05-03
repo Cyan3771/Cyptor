@@ -1,2 +1,6 @@
-textual
-pyyaml
+cryptography==47.0.0
+
+PyYAML==6.0.3
+
+textual==8.1.1
+textual-fspicker==1.0.0

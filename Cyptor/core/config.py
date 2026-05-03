@@ -1,10 +1,20 @@
 import json
 from pathlib import Path
+from core.debug import CannotWriteConfigError, CannotReadConfigError, CannotInitConfigError
 
 VERSION = "0.1.0 Alpha"
 DEFAULT_CONFIG = {
     "language": "zh-CN"
 }
+
+
+def initJson(path: str | Path):
+    """初始化JSON文件"""
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump({}, f)
+    except Exception as e:
+        raise CannotInitConfigError(e) from e
 
 
 def loadJson(file_path: str | Path) -> dict:
@@ -17,13 +27,13 @@ def loadJson(file_path: str | Path) -> dict:
         return data
     except FileNotFoundError:
         try:
-            with open(path, "w", encoding="utf-8") as f:
-                json.dump({}, f)
+            initJson(path)
             return {}
         except Exception as e:
-            raise e
+            raise CannotInitConfigError(e) from e
     except Exception as e:
-        raise e
+        initJson(path)
+        raise CannotReadConfigError(e) from e
 
 
 def loadConfig() -> dict:

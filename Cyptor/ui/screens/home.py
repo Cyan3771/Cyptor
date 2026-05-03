@@ -55,14 +55,13 @@ class HomeScreen(BaseScreen):
         AboutBtn = Button(self.i18n.home.buttons.about,
                           id="about", classes="btn")
 
-        ButtonsGroup = Center(
-            EncryptionBtn, DecryptionBtn, SettingsBtn, AboutBtn)
-
-        yield Vertical(
-            WelcomeLabel,
-            ButtonsGroup,
-            id="home-container"
-        )
+        with Vertical(id="home-container"):
+            yield WelcomeLabel
+            with Center():
+                yield EncryptionBtn
+                yield DecryptionBtn
+                yield SettingsBtn
+                yield AboutBtn
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         """按钮点击事件"""

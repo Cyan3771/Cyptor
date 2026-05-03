@@ -9,7 +9,10 @@ common:
   app:
     title: "Cyptor by Cyan3771 Version {0}"
   quit: "Quit"
-  back: "Back"
+  file:
+    select: "Select File:"
+    button:
+      tooltip: "Click to select file"
 
 home:
   welcome: "Welcome to Cyptor!"
@@ -20,4 +23,7 @@ home:
     about: "ℹ️ About"
 
 encryption:
-  title: "Encryption"
+  title: "Encrypt File"
+
+errors:
+ 
