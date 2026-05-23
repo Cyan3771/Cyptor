@@ -45,6 +45,7 @@ class EncryptionScreen(BaseScreen):
         self.i18n = app.i18n
         self.title = self.i18n.encryption.title
 
+    # 定义组件
     def compose(self) -> ComposeResult:
         yield from super().compose()
 
@@ -54,6 +55,7 @@ class EncryptionScreen(BaseScreen):
                 yield Input(id="file-input")
                 yield Button(label="📄", tooltip=self.i18n.common.file.button.tooltip, id="file-button")
 
+    # 按钮点击事件
     def on_button_pressed(self, event):
         if event.button.id == "file-button":
             self.app.push_screen(
@@ -61,12 +63,12 @@ class EncryptionScreen(BaseScreen):
                 callback=self._file_chosen,
             )
 
+    # 文件选择回调
     def _file_chosen(self, chosen):
         if chosen is None:
             return
-        fileInput = self.query_one("#file-input", Input)
+        fileInput = self.query_one("#file-input", Input)  # 获取输入框组件
         fileInput.value = str(chosen)
-        # TODO: 将 `content` 交给 CryptoManager 或其他处理逻辑
 
     def action_back(self) -> None:
         """返回上一页"""
