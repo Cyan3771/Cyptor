@@ -45,6 +45,7 @@ class EncryptionScreen(BaseScreen):
         self.i18n = app.i18n
         self.title = self.i18n.encryption.title
 
+    # 定义组件
     def compose(self) -> ComposeResult:
         yield from super().compose()
 
@@ -54,6 +55,7 @@ class EncryptionScreen(BaseScreen):
                 yield Input(id="file-input")
                 yield Button(label="📄", tooltip=self.i18n.common.file.button.tooltip, id="file-button")
 
+    # 按钮点击事件
     def on_button_pressed(self, event):
         if event.button.id == "file-button":
             self.app.push_screen(
