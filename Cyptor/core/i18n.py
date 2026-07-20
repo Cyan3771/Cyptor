@@ -2,7 +2,7 @@ import yaml
 from pathlib import Path
 import os
 from typing import Any
-from core.debug import CannotReadLocaleError
+from debug import CannotReadLocaleError
 
 DEFAULT_I18N = {'language': 'en-US', 'language_name': 'English', 'language_names': {'zh-CN': '英语'}, 'version': '0.1.0 Alpha', 'common': {'app': {'title': 'Cyptor by Cyan3771 Version {0}'}, 'quit': 'Quit', 'file': {'select': 'Select File:', 'button': {
     'tooltip': 'Click to select file'}}}, 'home': {'welcome': 'Welcome to Cyptor!', 'buttons': {'encrypt': '🔒 Encrypt File', 'decrypt': '🔓 Decrypt File', 'settings': '⚙️ Settings', 'about': 'ℹ️ About'}}, 'encryption': {'title': 'Encrypt File'}, 'errors': {}
@@ -33,16 +33,38 @@ def loadYaml(file_path: str | Path) -> dict:
 
 
 class LocaleNode:
-    def __init__(self, data: dict, parentPath: str = ""):
+    """国际化资源节点"""
+
+    def __init__(self, data: dict, parent_path: str = ""):
         self._data = data
-        self._parentPath = parentPath
+        self._parent_path = parent_path
 
     def __getattr__(self, name: str) -> Any:
+        # 如果键存在
         if name in self._data:
             value = self._data[name]
             if isinstance(value, dict):
-                return LocaleNode(value, f"{self._parentPath}.{name}")
+                # 构建子节点路径
+                new_path = f"{self._parent_path}.{name}" if self._parent_path else name
+                return LocaleNode(value, new_path)
             return value
+
+        # 键不存在返回占位符
+        missing_path = f"{self._parent_path}.{name}" if self._parent_path else name
+        return f"{{MISSING: {missing_path}}}"
+
+    def __getitem__(self, key):
+        # 支持key访问
+        return self.__getattr__(key)
+
+    def get(self, key: str, default=None):
+        try:
+            return self.__getattr__(key)
+        except AttributeError:
+            return default
+
+    def __repr__(self):
+        return f"LocaleNode({self._data})"
 
 
 def scanLocales(localesDir: str | Path = "locales") -> dict:
