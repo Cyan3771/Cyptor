@@ -1,5 +1,4 @@
-from core.crypto.aes import AES
-from core.crypto.chacha20 import ChaCha20
+from core.crypto.AES import AES
 from core.debug import AlgorithmNotSupportedError, EncryptionError, DecryptionError, InvalidPasswordError
 
 
@@ -9,7 +8,6 @@ class CryptoManager:
     """
     _ALGORITHM_REGISTRY = {
         "AES-256-CBC": AES,
-        "ChaCha20": ChaCha20,
     }
 
     def __init__(self, algorithm: str):
