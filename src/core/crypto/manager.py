@@ -1,43 +1,34 @@
-from core.crypto.AES import AES
-from core.debug import AlgorithmNotSupportedError, EncryptionError, DecryptionError, InvalidPasswordError
+from core.crypto.AES import CyptorAES
+from core.crypto.base import BaseCryptor
+from core.debug import CyptorError, ErrorCode
 
 
 class CryptoManager:
-    """加密管理器
-    初始化：algorithm: str 加密算法
-    """
-    _ALGORITHM_REGISTRY = {
-        "AES-256-CBC": AES,
+    """加密管理器"""
+
+    _ALGORITHM_REGISTRY: dict[str, type[BaseCryptor]] = {
+        "AES-256-CBC": CyptorAES,
     }
 
     def __init__(self, algorithm: str):
-        # 校验算法是否存在
         if algorithm not in self._ALGORITHM_REGISTRY:
-            raise AlgorithmNotSupportedError(algorithm)
+            raise CyptorError(ErrorCode.ALGORITHM_NOT_SUPPORTED, params={
+                              "algorithm": algorithm}, message=f"Algorithm not supported: {algorithm}")
 
-        # 创建对应算法实例
-        self._crypto = self._ALGORITHM_REGISTRY[algorithm]()
+        self._crypto: BaseCryptor = self._ALGORITHM_REGISTRY[algorithm]()
 
-    def encrypt(self, data: bytes, password: str) -> bytes:
-        """
-        加密
-        输入: data: bytes, password: str
-        输出: data: bytes
-        """
+    def encrypt(self, data: bytes, password: str) -> tuple[bytes, bytes, bytes]:
         try:
-            return self._crypto.encrypt(data, password)
+            result = self._crypto.encrypt(data, password)
         except Exception as e:
-            raise EncryptionError(e) from e
+            raise CyptorError(ErrorCode.ENCRYPT_FAILED, message=f"Encryption failed", debug={
+                              "exception": str(e)})
+        return result
 
-    def decrypt(self, data: bytes, password: str) -> bytes:
-        """
-        解密
-        输入: data: bytes, password: str
-        输出: data: bytes
-        """
+    def decrypt(self, salt: bytes, iv: bytes, encrypted_data: bytes, password: str) -> bytes:
         try:
-            return self._crypto.decrypt(data, password)
-        except ValueError as e:
-            raise InvalidPasswordError(e)
+            result = self._crypto.decrypt(salt, iv, encrypted_data, password)
         except Exception as e:
-            raise DecryptionError(e) from e
+            raise CyptorError(ErrorCode.DECRYPT_FAILED, message=f"Decryption failed", debug={
+                              "exception": str(e)})
+        return result
