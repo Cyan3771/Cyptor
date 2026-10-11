@@ -17,6 +17,5 @@ Cyptor is a lightweight, simple file encryption tool.
 </div>
 
 > [!WARNING]  
-> When using this tool to encrypt files, **be sure to keep your password safe**. A forgotten password **cannot be recovered**.
-> You use this tool at your own risk. The developer is not responsible for any loss caused by this tool.  
+> When using this tool to encrypt files, **be sure to keep your password safe**. A forgotten password **cannot be recovered**. You use this tool at your own risk. The developer is not responsible for any loss caused by this tool.  
 > This tool is intended for studying encryption principles only and **cannot replace** professional encryption tools. For encrypting important files, please **look elsewhere**.
