@@ -1,9 +1,9 @@
 language: zh-CN
 language_name: 简体中文
-language_names:
+language_name_in_other_languages:
   en-US: Chinese (Simplified)
 
-version: 0.1.0 Alpha
+version: 0.1.0
 
 common:
   app:
@@ -12,7 +12,7 @@ common:
   file:
     select: "选择文件："
     button:
-     tooltip: "点击选择文件"
+      tooltip: "点击选择文件"
 
 home:
   welcome: "欢迎使用 Cyptor！"
@@ -26,4 +26,16 @@ encryption:
   title: "加密文件"
 
 errors:
-  aaa: a
+  CRYPTO.ALGORITHM_NOT_SUPPORTED: "不支持的加密算法: {algorithm}"
+  CRYPTO.ENCRYPT.FAILED: "加密失败"
+
+  CRYPTO.DECRYPT.FAILED: "解密失败。请检查密码是否正确，或者文件是否被损坏"
+
+  IO.FILE.READ_FAILED: "读取文件失败: {path}"
+  IO.FILE.WRITE_FAILED: "写入文件失败: {path}"
+  IO.CONFIG.READ_FAILED: "读取配置文件失败: {path}"
+  IO.CONFIG.WRITE_FAILED: "写入配置文件失败: {path}"
+  IO.CONFIG.INIT_FAILED: "初始化配置文件失败: {path}"
+  IO.LOCALE.READ_FAILED: "读取国际化文件失败: {path}"
+
+  UNKNOWN: "未知错误"

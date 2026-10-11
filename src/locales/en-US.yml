@@ -1,9 +1,9 @@
 language: en-US
 language_name: English
-language_names:
+language_name_in_other_languages:
   zh-CN: 英语
 
-version: 0.1.0 Alpha
+version: 0.1.0
 
 common:
   app:
@@ -26,4 +26,16 @@ encryption:
   title: "Encrypt File"
 
 errors:
- 
+  CRYPTO.ALGORITHM_NOT_SUPPORTED: "Unsupported algorithm: {algorithm}"
+  CRYPTO.ENCRYPT.FAILED: "Encryption failed"
+
+  CRYPTO.DECRYPT.FAILED: "Decryption failed. Please check whether the password is correct or the file has been corrupted"
+
+  IO.FILE.READ_FAILED: "Failed to read file: {path}"
+  IO.FILE.WRITE_FAILED: "Failed to write file: {path}"
+  IO.CONFIG.READ_FAILED: "Failed to read config file: {path}"
+  IO.CONFIG.WRITE_FAILED: "Failed to write config file: {path}"
+  IO.CONFIG.INIT_FAILED: "Failed to initialize config file: {path}"
+  IO.LOCALE.READ_FAILED: "Failed to read locale file: {path}"
+
+  UNKNOWN: "Unknown error"
