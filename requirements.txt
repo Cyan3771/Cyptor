@@ -6,6 +6,7 @@ mdit-py-plugins==0.6.1
 mdurl==0.1.2
 platformdirs==4.10.1
 pycparser==3.0
+pycryptodome==3.24.0
 Pygments==2.20.0
 PyYAML==6.0.3
 rich==15.0.0
