@@ -3,5 +3,11 @@ from app import CyptorApp
 
 PROJECT_ROOT = Path(__file__).resolve()
 
-app = CyptorApp()
-app.run()
+
+def main():
+    app = CyptorApp()
+    app.run()
+
+
+if __name__ == "__main__":
+    main()
