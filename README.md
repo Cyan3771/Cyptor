@@ -1,4 +1,4 @@
-[EN](README.md) | 中文
+EN|(中文)[README-zh.md]
 
 ---
 
