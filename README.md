@@ -8,6 +8,8 @@ This project is still under development. See the [dev](https://github.com/Cyan37
 
 # Cyptor
 
+<img src="Cyptor.svg" width=150 />
+
 Cyptor is a lightweight, simple file encryption tool.
 
 [![Python3.14+](https://img.shields.io/badge/Python-3.14%2B-3776AB?style=for-the-badge&logo=python&labelColor=%23FFD43B)](https://python.org)
