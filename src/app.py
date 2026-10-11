@@ -2,7 +2,7 @@ from textual.app import App
 from ui.screens.home import HomeScreen
 from core.config import VERSION, loadConfig, DEFAULT_CONFIG
 from core.i18n import loadI18n, LocaleNode
-from core.debug import CannotReadConfigError, CannotWriteConfigError, CannotReadLocaleError, CannotInitConfigError
+from core.debug import CyptorError, ErrorCode
 
 
 class CyptorApp(App):
@@ -14,26 +14,27 @@ class CyptorApp(App):
         # 加载配置和国际化资源
         try:
             self.config = loadConfig()
-        except CannotReadConfigError as e:
-            self.notify("Error while loading config file, using default config: \n" +
-                        str(e), severity="error")
-            self.config = DEFAULT_CONFIG
-        except CannotInitConfigError as e:
-            self.notify("Error while initializing config file: \n" +
-                        str(e), severity="error")
+        except CyptorError as e:
+            if e.code == ErrorCode.CONFIG_READ_FAILED:
+                self.notify(self.i18n.errors.CONFIG.READ_FAILED +
+                            str(e), severity="error")
+                self.config = DEFAULT_CONFIG
+            elif e.code == ErrorCode.CONFIG_INIT_FAILED:
+                self.notify(self.i18n.errors.CONFIG.INIT_FAILED + "\n" +
+                            str(e), severity="error")
             self.config = DEFAULT_CONFIG
         except Exception as e:
-            self.notify("Unknown error while loading config file, using default config: \n" +
+            self.notify(self.i18n.errors.UNKNOWN + "\n" +
                         str(e), severity="error")
             self.config = DEFAULT_CONFIG
         try:
             self.i18n = loadI18n(self.config.get("language", "zh-CN"))
-        except CannotReadLocaleError as e:
-            self.notify("Error while loading locale file: \n" +
+        except CyptorError as e:
+            self.notify(self.i18n.errors.LOCALE.READ_FAILED + "\n" +
                         str(e), severity="error")
             self.i18n = LocaleNode({})
         except Exception as e:
-            self.notify("Unknown error while loading locale file: \n" +
+            self.notify(self.i18n.errors.UNKNOWN + "\n" +
                         str(e), severity="error")
             self.i18n = LocaleNode({})
 

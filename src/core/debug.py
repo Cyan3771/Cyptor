@@ -1,78 +1,70 @@
+
 import traceback
+# 错误码定义
 
 
-def getFullError(exc: Exception) -> str:
-    """获取完整的错误信息"""
-    return "".join(traceback.format_exception(type(exc), exc, exc.__traceback__))
+class ErrorCode:
+
+    # 加密
+    ALGORITHM_NOT_SUPPORTED = "CRYPTO.ALGORITHM_NOT_SUPPORTED"
+    ENCRYPT_FAILED = "CRYPTO.ENCRYPT.FAILED"
+
+    # 解密
+    DECRYPT_FAILED = "CRYPTO.DECRYPT.FAILED"
+
+    # IO
+    FILE_READ_FAILED = "IO.FILE.READ_FAILED"
+    FILE_WRITE_FAILED = "IO.FILE.WRITE_FAILED"
+    CONFIG_READ_FAILED = "IO.CONFIG.READ_FAILED"
+    CONFIG_WRITE_FAILED = "IO.CONFIG.WRITE_FAILED"
+    CONFIG_INIT_FAILED = "IO.CONFIG.INIT_FAILED"
+    LOCALE_READ_FAILED = "IO.LOCALE.READ_FAILED"
+
+    # 兜底
+    UNKNOWN = "UNKNOWN"
+
+    # 错误码参数表
+    ERROR_PARAMS: dict[str, tuple[str, ...] | None] = {
+        ALGORITHM_NOT_SUPPORTED: ("algorithm",),
+        ENCRYPT_FAILED: None,
+        DECRYPT_FAILED: None,
+        FILE_READ_FAILED: ("path",),
+        FILE_WRITE_FAILED: ("path",),
+        CONFIG_READ_FAILED: ("path",),
+        CONFIG_WRITE_FAILED: ("path",),
+        CONFIG_INIT_FAILED: ("path",),
+        LOCALE_READ_FAILED: ("path",),
+        UNKNOWN: None
+    }
 
 
-class CryptoError(Exception):
-    """加密或解密错误"""
+# Cyptor 错误定义
+class CyptorError(Exception):
+    """Cyptor 错误"""
 
-    def __init__(self, message: str | Exception):
-        message = getFullError(message) if isinstance(
-            message, Exception) else message
-        super().__init__(message)
+    def __init__(self, code: str = ErrorCode.UNKNOWN, params: dict = {}, message: str = "", debug: dict = {}) -> None:
+        super().__init__()
+        self.code = code
+        self.params = params
+        self.message = message
+        self.debug = debug
 
+    # 检查参数是否正确
+    def check_params(self) -> bool:
+        expected_params = ErrorCode.ERROR_PARAMS.get(self.code)
+        if expected_params is None:
+            return True
+        for param in expected_params:
+            if param not in self.params:
+                return False
+        return True
 
-class AlgorithmNotSupportedError(CryptoError):
-    """不支持的算法错误"""
-
-    def __init__(self, algorithm: str):
-        self.algorithm = algorithm
-        super().__init__(f"Unsupported algorithm: {algorithm}")
-
-
-class EncryptionError(CryptoError):
-    """加密错误"""
-
-    def __init__(self, message: str | Exception):
-        message = getFullError(message) if isinstance(
-            message, Exception) else message
-        super().__init__(message)
-
-
-class DecryptionError(CryptoError):
-    """解密错误"""
-
-    def __init__(self, message: str | Exception):
-        message = getFullError(message) if isinstance(
-            message, Exception) else message
-        super().__init__(message)
-
-
-class InvalidPasswordError(DecryptionError):
-    """无效密码错误"""
-
-
-class FileError(Exception):
-    """文件错误"""
-
-    def __init__(self, message: str | Exception):
-        message = getFullError(message) if isinstance(
-            message, Exception) else message
-        super().__init__(message)
-
-
-class CannotWriteFileError(FileError):
-    """无法写入文件错误"""
-
-
-class CannotWriteConfigError(CannotWriteFileError):
-    """无法写入配置文件错误"""
-
-
-class CannotInitConfigError(CannotWriteConfigError):
-    """无法初始化配置文件错误"""
-
-
-class CannotReadFileError(FileError):
-    """无法读取文件错误"""
-
-
-class CannotReadConfigError(CannotReadFileError):
-    """无法读取配置文件错误"""
-
-
-class CannotReadLocaleError(CannotReadFileError):
-    """无法读取语言文件错误"""
+    # 转为字典
+    def to_dict(self,) -> dict:
+        result = {
+            "code": self.code,
+            "params": self.params if self.check_params() else None,
+            "message": self.message,
+            "debug": self.debug
+        }
+        return result
