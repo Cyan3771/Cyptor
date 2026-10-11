@@ -8,6 +8,8 @@
 
 # Cyptor
 
+<img src="Cyptor.svg" width=150 />
+
 Cyptor 是一个轻量、简易的文件加密工具。
 
 [![Python3.14+](https://img.shields.io/badge/Python-3.14%2B-3776AB?style=for-the-badge&logo=python&labelColor=%23FFD43B)](https://python.org)
