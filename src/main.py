@@ -1,7 +1,7 @@
-import os
+from pathlib import Path
 from app import CyptorApp
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = Path(__file__).resolve()
 
 app = CyptorApp()
 app.run()

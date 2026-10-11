@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+import main
 from core.debug import CyptorError, ErrorCode
 
 VERSION = "0.1.0"
@@ -39,7 +40,7 @@ def loadJson(file_path: str | Path) -> dict:
 
 def loadConfig() -> dict:
     """加载配置文件"""
-    config = loadJson("config.json")
+    config = loadJson(main.PROJECT_ROOT / "config.json")
     for key, value in DEFAULT_CONFIG.items():
         if key not in config:
             config[key] = value
