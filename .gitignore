@@ -1,5 +1,8 @@
 *.code-workspace
 .venv/
 .vscode/
-__pycache__/
 config.json
+
+# Python cache
+__pycache__/
+*.pyc
