@@ -1,0 +1,26 @@
+[project]
+name = "Cyptor"
+version = "0.1.0"
+description = "Cyptor is a tool which is to encrypt or decrypt a file."
+authors = [
+    { name = "Cyan3771", email = "yangjiahao36@outlook.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "cffi==2.1.0",
+    "cryptography==49.0.0",
+    "linkify-it-py==2.1.0",
+    "markdown-it-py==4.2.0",
+    "mdit-py-plugins==0.6.1",
+    "mdurl==0.1.2",
+    "platformdirs==4.10.1",
+    "pycparser==3.0",
+    "pycryptodome==3.24.0",
+    "pygments==2.20.0",
+    "pyyaml==6.0.3",
+    "rich==15.0.0",
+    "textual==8.2.8",
+    "textual-fspicker==1.0.1",
+    "typing-extensions==4.16.0",
+    "uc-micro-py==2.0.0",
+]
