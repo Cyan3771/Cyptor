@@ -1,14 +1,14 @@
-EN|[中文](README-zh.md)
+EN | [中文](README-zh.md)
 
 ---
 
-This project is still under development. See the [dev](https://github.com/Cyan3771/Cyptor/tree/dev) branch for progress.
+> This project is still under development. See the [dev](https://github.com/Cyan3771/Cyptor/tree/dev) branch for progress.
 
 <div align="center">
 
-# Cyptor
+<img src="Cyptor.png" width=150 />
 
-<img src="Cyptor.svg" width=150 />
+# Cyptor
 
 Cyptor is a lightweight, simple file encryption tool.
 
@@ -19,5 +19,5 @@ Cyptor is a lightweight, simple file encryption tool.
 </div>
 
 > [!WARNING]  
-> When using this tool to encrypt files, **be sure to keep your password safe**. A forgotten password **cannot be recovered**. You use this tool at your own risk. The developer is not responsible for any loss caused by this tool.  
+> When using this tool to encrypt files, **be sure to keep your password safe**. A forgotten password **cannot be recovered**. You use this tool **at your own risk**. The developer is not responsible for any loss caused by this tool.  
 > This tool is intended for studying encryption principles only and **cannot replace** professional encryption tools. For encrypting important files, please **look elsewhere**.
